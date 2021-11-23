@@ -10,6 +10,7 @@ route.get('/', function (req, res) {
         author: "Md. Maruf Bin Salim",
         description: "It's the backend for CSE311 Project_1",
         initialCommit: "20/11/2021",
+        port: process.env.PORT
     }
     console.info(DESC_INFO);
     console.info(DividerLine);
