@@ -12,6 +12,7 @@ app.use(cors());
 //requiring the routes and using them
 const API_INFO_ROUTE = require('./routes/info')
 app.use('/api/v1/info', API_INFO_ROUTE);
+app.use('/', API_INFO_ROUTE);
 let DividerLine = "_______________________________________\n";
 
 // socekt initialization from http server
