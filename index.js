@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const serverSocket = require('socket.io');
 // The port for the server to run on
-const PORT = process.env.SERVER_PORT || 3000;
+const PORT = process.env.PORT || 3000;
 require('dotenv').config();
 app.use(express.json());
 app.use(cors());
