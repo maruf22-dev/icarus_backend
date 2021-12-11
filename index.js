@@ -11,7 +11,9 @@ app.use(cors());
 
 //requiring the routes and using them
 const API_INFO_ROUTE = require('./routes/info')
+const DATABASE_INFO_ROUTE = require('./routes/check_db')
 app.use('/api/v1/info', API_INFO_ROUTE);
+app.use('/api/v1/database', DATABASE_INFO_ROUTE);
 app.use('/', API_INFO_ROUTE);
 let DividerLine = "_______________________________________\n";
 
