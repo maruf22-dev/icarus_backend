@@ -11,12 +11,17 @@ app.use(cors());
 
 //requiring the routes and using them
 const API_INFO_ROUTE = require('./routes/backend_info/info')
-const HOSTED_SQL_DATABASE_INFO_ROUTE = require('./routes/check_sql_connection/check_sql_db');
-const LOCAL_SQL_DATABASE_INFO_ROUTE = require('./routes/check_sql_connection/check_local_sql_db')
-const SQL_INIT = require('./utils/sql_init')
+const SQL_DATABASE_INFO_ROUTE = require('./routes/check_sql_connection/check_sql_db');
+const SQL_DATABASE_INIT_ROUTE = require('./routes/check_sql_connection/initialize_sql_db');
+const SQL_INIT = require('./utils/sql_initializer')
 app.use('/api/v1/info', API_INFO_ROUTE);
-app.use('/api/v1/database/sql/hosted', HOSTED_SQL_DATABASE_INFO_ROUTE);
-app.use('/api/v1/database/sql/local', LOCAL_SQL_DATABASE_INFO_ROUTE);
+
+// ?HOST=LOCAL or ?HOST=WEB
+app.use('/api/v1/database/sql', SQL_DATABASE_INFO_ROUTE);
+
+// ?HOST=LOCAL or ?HOST=WEB // ?ACTION=CREATE or ?ACTION=DROP
+app.use('/api/v1/database/sql/init', SQL_DATABASE_INIT_ROUTE);
+
 app.use('/', API_INFO_ROUTE);
 let DividerLine = "_______________________________________\n";
 
@@ -48,5 +53,4 @@ io.on('connection', (socket) => {
 server.listen(PORT, () => {
     let StartingInfo = `The Server is Listening at port : ${PORT}\n`;
     console.info(DividerLine + StartingInfo + DividerLine);
-    SQL_INIT("LOCAL", "DROP");
 });

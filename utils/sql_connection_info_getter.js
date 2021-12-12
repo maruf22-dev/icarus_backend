@@ -6,7 +6,11 @@ async function sql_connection_info(HOST) {
 
     if(HOST === "LOCAL")
         connection = localConnection;
-    else connection = hostedConnection;
+    else 
+    {
+        HOST = "WEB";
+        connection = hostedConnection;
+    }
 
     let api_key = 'API_KEY=' + process.env.SQL_API_KEY + '&&';
     let method = 'METHOD=returnConnectionInformation';
