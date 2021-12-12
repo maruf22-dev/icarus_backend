@@ -4,7 +4,7 @@ const sql_connection_info = require('../../utils/sql_connection_info');
 // returns some basic information about the DATABASE
 route.get('/', async function (req, res) 
 {
-    res.send(await sql_connection_info('HOSTED'));
+    res.send(await sql_connection_info('000WEBHOST'));
 });
 
 module.exports = route

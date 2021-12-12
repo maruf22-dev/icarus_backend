@@ -1,9 +1,12 @@
 const axios = require('axios').default;
-const sql_connection_info = require('../utils/sql_connection_info');
 async function sql_connection_info(HOST) {
     let localConnection = 'http://localhost/db_manager.php?';
     let hostedConnection = 'https://icarus-database.000webhostapp.com/db_manager.php?';
-    let connection = (HOST === "LOCAL") ? localConnection : hostedConnection;
+    let connection = "";
+
+    if(HOST === "LOCAL")
+        connection = localConnection;
+    else connection = hostedConnection;
 
     let api_key = 'API_KEY=' + process.env.SQL_API_KEY + '&&';
     let method = 'METHOD=returnConnectionInformation';
@@ -18,7 +21,7 @@ async function sql_connection_info(HOST) {
     }
     return {
         DBA: "Md. Maruf Bin Salim",
-        hostedAt: "https://***************.000webhostapp.com/",
+        hostedAt: HOST,
         status: response.data,
     };
 }
