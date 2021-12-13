@@ -24,10 +24,15 @@ app.use('/api/v1/database/sql', require('./routes/check_sql_db'));
 // ?HOST=LOCAL or ?HOST=WEB // ?ACTION=CREATE or ?ACTION=DROP
 app.use('/api/v1/database/sql/init', require('./routes/initialize_sql_db'));
 
-// creates a user in sql DB
+// creates a user 
 // ?DB=SQL or ?DB=MONGO
 // ?HOST=LOCAL or ?HOST=WEB
 app.use('/api/v1/database/createuser', require('./routes/create_user'));
+
+// authinticates a user
+// ?DB=SQL or ?DB=MONGO
+// ?HOST=LOCAL or ?HOST=WEB
+app.use('/api/v1/database/userauth', require('./routes/authenticate_user'));
 
 let DividerLine = "_______________________________________\n";
 

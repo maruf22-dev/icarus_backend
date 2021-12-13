@@ -9,7 +9,7 @@ const CREATE =
         " userID varchar(255)  NOT NULL," +
         " profileImageLink varchar(255)," +
         " otp varchar(255), " +
-        " PRIMARY KEY (userID, email)); "
+        " PRIMARY KEY (email)); "
 }
 
 const DROP =
@@ -42,8 +42,8 @@ const UPDATE =
     INSERT_NEW_USER:
         function INSERT_NEW_USER(USERNAME, USERID, EMAIL, PASSWORD) {
             return (
-                `INSERT INTO user (userID, profileImageLink, userName, email, password)` +
-                ` VALUES('${USERID}', NULL, '${USERNAME}', '${EMAIL}', '${PASSWORD}'); `
+                `INSERT INTO user (userID, profileImageLink, userName, email, password, otp)` +
+                ` VALUES('${USERID}', NULL, '${USERNAME}', '${EMAIL}', '${PASSWORD}', NULL); `
             );
         },
 }
