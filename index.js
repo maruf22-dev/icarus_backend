@@ -2,27 +2,33 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const serverSocket = require('socket.io');
+const bodyParser = require("body-parser");
 // The port for the server to run on
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({
+  extended: true
+}));
 
+// info endpoint
+app.use('/api/v1/info', require('./routes/info'));
+app.use('/', require('./routes/info'));
 
-//requiring the routes and using them
-const API_INFO_ROUTE = require('./routes/backend_info/info')
-const SQL_DATABASE_INFO_ROUTE = require('./routes/check_sql_connection/check_sql_db');
-const SQL_DATABASE_INIT_ROUTE = require('./routes/check_sql_connection/initialize_sql_db');
-const SQL_INIT = require('./utils/sql_initializer')
-app.use('/api/v1/info', API_INFO_ROUTE);
-
+// check endpoint for sql connection
 // ?HOST=LOCAL or ?HOST=WEB
-app.use('/api/v1/database/sql', SQL_DATABASE_INFO_ROUTE);
+app.use('/api/v1/database/sql', require('./routes/check_sql_db'));
 
+// init endpoint for sql connection
 // ?HOST=LOCAL or ?HOST=WEB // ?ACTION=CREATE or ?ACTION=DROP
-app.use('/api/v1/database/sql/init', SQL_DATABASE_INIT_ROUTE);
+app.use('/api/v1/database/sql/init', require('./routes/initialize_sql_db'));
 
-app.use('/', API_INFO_ROUTE);
+// creates a user in sql DB
+// ?DB=SQL or ?DB=MONGO
+// ?HOST=LOCAL or ?HOST=WEB
+app.use('/api/v1/database/createuser', require('./routes/create_user'));
+
 let DividerLine = "_______________________________________\n";
 
 // socekt initialization from http server

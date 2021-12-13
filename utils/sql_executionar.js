@@ -1,7 +1,6 @@
 const axios = require('axios').default;
-const QUERIES = require('./query_defination')
 
-async function sql_init(HOST, ACTION) {
+async function sql_exec(HOST, TYPE, QUERY) {
     let localConnection = 'http://localhost/db_manager.php?';
     let hostedConnection = 'https://icarus-database.000webhostapp.com/db_manager.php?';
     if (HOST === "LOCAL")
@@ -11,18 +10,9 @@ async function sql_init(HOST, ACTION) {
         connection = hostedConnection;
     }
     let api_key = 'API_KEY=' + process.env.SQL_API_KEY + '&&';
-    let query = 'QUERY=';
     let method = '&&METHOD=executeQuery';
-    let type = '&&TYPE=DBA'
-
-
-    if (ACTION === "CREATE") {
-        query += QUERIES.DBA.CREATE.USER;
-    }
-    else if (ACTION === "DROP") {
-        query += QUERIES.DBA.DROP.USER;
-    }
-
+    let type = '&&TYPE=' + TYPE;
+    let query = 'QUERY=' + QUERY;
     let getter = connection + api_key + query + method + type;
     let response = null;
     try {
@@ -30,9 +20,10 @@ async function sql_init(HOST, ACTION) {
     }
     catch (err) {
         console.log(err);
+        return response;
     }
     return {
         data: response.data,
     };
 }
-module.exports = sql_init;
+module.exports = sql_exec;

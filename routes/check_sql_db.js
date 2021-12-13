@@ -1,6 +1,6 @@
 const express = require('express')
 let route = express.Router()
-const sql_connection_info = require('../../utils/sql_connection_info_getter');
+const sql_connection_info = require('../utils/sql_connection_info_getter');
 // returns some basic information about the DATABASE
 
 // ?HOST=LOCAL or ?HOST=WEB

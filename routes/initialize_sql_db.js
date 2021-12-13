@@ -1,6 +1,6 @@
 const express = require('express')
 let route = express.Router()
-const sql_initializer = require('../../utils/sql_initializer')
+const sql_initializer = require('../utils/sql_initializer')
 // returns some basic information about the DATABASE
 
 // ?HOST=LOCAL or ?HOST=WEB // ?ACTION=CREATE or ?ACTION=DROP
