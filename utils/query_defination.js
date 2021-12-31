@@ -9,7 +9,7 @@ const CREATE =
         " userID varchar(255)  NOT NULL," +
         " profileImageLink varchar(255)," +
         " otp varchar(255), " +
-        " PRIMARY KEY (email)); "
+        " PRIMARY KEY (email)); ",
 }
 
 const DROP =
@@ -26,13 +26,14 @@ const DBA =
 
 const RETRIEVE =
 {
-    GET_USER_AUTH: 
-    function GET_USER_AUTH(EMAIL) {
-        return (
-            `SELECT userName, email, userID, password FROM user WHERE ` +
-            `email = '${EMAIL}' ; `
-        );
-    },
+    GET_USER_AUTH:
+        function GET_USER_AUTH(EMAIL) {
+            return (
+                `SELECT userName, email, userID, password FROM user WHERE ` +
+                `email = '${EMAIL}' ; `
+            );
+        },
+    GET_USERS_BASIC_INFO: "SELECT userName, userID, profileImageLink FROM user"
 }
 
 
