@@ -1,7 +1,7 @@
 const axios = require('axios').default;
 
 async function sql_exec(HOST, TYPE, QUERY) {
-    let localConnection = 'http://localhost/db_manager.php?';
+    let localConnection = 'http://192.168.64.2/db_manager.php?';
     let hostedConnection = 'https://icarus-database.000webhostapp.com/db_manager.php?';
     if (HOST === "LOCAL")
         connection = localConnection;
@@ -15,6 +15,7 @@ async function sql_exec(HOST, TYPE, QUERY) {
     let query = 'QUERY=' + QUERY;
     let getter = connection + api_key + query + method + type;
     let response = null;
+    console.log(getter);
     try {
         response = await axios.get(getter);
     }

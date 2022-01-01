@@ -12,7 +12,8 @@ const QUERIES = require('../utils/query_defination')
 
 route.post('/',
     async function (req, res) {
-
+        console.log(req.body.email);
+        console.log(req.query.HOST);
         let info = await sql_exec(
             req.query.HOST,
             'RETRIEVE',
@@ -21,6 +22,7 @@ route.post('/',
             )
         );
         let response = null;
+        console.log(info.data.data);
         if (info.data.data.length === 0) {
             response = {
                 status_code: 403,

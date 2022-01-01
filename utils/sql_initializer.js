@@ -2,7 +2,7 @@ const axios = require('axios').default;
 const QUERIES = require('./query_defination')
 
 async function sql_init(HOST, ACTION) {
-    let localConnection = 'http://localhost/db_manager.php?';
+    let localConnection = 'http://192.168.64.2/db_manager.php?';
     let hostedConnection = 'https://icarus-database.000webhostapp.com/db_manager.php?';
     if (HOST === "LOCAL")
         connection = localConnection;
@@ -18,6 +18,18 @@ async function sql_init(HOST, ACTION) {
 
     if (ACTION === "CREATE") {
         query += QUERIES.DBA.CREATE.USER;
+        query += QUERIES.DBA.CREATE.MESSAGES;
+        query += QUERIES.DBA.CREATE.THREADS;
+        query += QUERIES.DBA.CREATE.LASTMESSAGE;
+        query += QUERIES.DBA.CREATE.RENTER;
+        query += QUERIES.DBA.CREATE.FAVOURITES;
+        query += QUERIES.DBA.CREATE.LISTINGS;
+        query += QUERIES.DBA.CREATE.LISTER;
+        query += QUERIES.DBA.CREATE.AREA;
+        query += QUERIES.DBA.CREATE.REPORT;
+        query += QUERIES.DBA.CREATE.ADMIN;
+        query += "INSERT INTO admin(adminID, pass) VALUES ('admin','zxcvbnm')";
+
     }
     else if (ACTION === "DROP") {
         query += QUERIES.DBA.DROP.USER;

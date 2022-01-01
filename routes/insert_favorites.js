@@ -8,7 +8,7 @@ const QUERIES = require('../utils/query_defination')
 
 // curl command for testing
 // change UID and EMAIl every time
-//  curl -d '{"name" : "user", "userID" : "UID", "email" : "email", "password" : "*****"}' -H 'Content-Type: application/json' "http://localhost:3001/api/v1/database/createuser?HOST=LOCAL"
+//  curl -d '{"listingID" : "*****","favoritedBy" : "123"}' -H 'Content-Type: application/json' "http://localhost:3001/api/v1/database/insertfavorites?HOST=LOCAL"
 
 route.post('/',
     async function (req, res) {
@@ -16,11 +16,9 @@ route.post('/',
             sql_exec(
                 req.query.HOST,
                 'UPDATE',
-                QUERIES.UPDATE.INSERT_NEW_USER(
-                    req.body.userName,
-                    req.body.userID,
-                    req.body.email,
-                    req.body.password
+                QUERIES.UPDATE.INSERT_NEW_FAVORITE(
+                    req.body.listingID,
+                    req.body.favoritedBy,
                 )
             )
         );

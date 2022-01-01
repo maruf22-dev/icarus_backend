@@ -34,6 +34,17 @@ app.use('/api/v1/database/createuser', require('./routes/create_user'));
 // ?HOST=LOCAL or ?HOST=WEB
 app.use('/api/v1/database/userauth', require('./routes/authenticate_user'));
 
+// creates a user 
+// ?DB=SQL or ?DB=MONGO
+// ?HOST=LOCAL or ?HOST=WEB
+app.use('/api/v1/database/insertthread', require('./routes/insert_thread'));
+app.use('/api/v1/database/insertrenter', require('./routes/insert_renter'));
+app.use('/api/v1/database/insertfavorites', require('./routes/insert_favorites'));
+app.use('/api/v1/database/insertlistings', require('./routes/insert_listings'));
+app.use('/api/v1/database/insertlister', require('./routes/insert_lister'));
+app.use('/api/v1/database/insertarea', require('./routes/insert_area'));
+app.use('/api/v1/database/insertreport', require('./routes/insert_report'));
+
 let DividerLine = "_______________________________________\n";
 
 // socekt initialization from http server
@@ -45,7 +56,6 @@ let io = serverSocket(server, {
         methods: ["GET", "POST"]
     }
 });
-
 // socket logic
 io.on('connection', (socket) => {
     // send_to_thread :
