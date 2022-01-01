@@ -44,6 +44,12 @@ app.use('/api/v1/database/insertlistings', require('./routes/insert_listings'));
 app.use('/api/v1/database/insertlister', require('./routes/insert_lister'));
 app.use('/api/v1/database/insertarea', require('./routes/insert_area'));
 app.use('/api/v1/database/insertreport', require('./routes/insert_report'));
+// user will update : numOfFav++, insert a new Fav in favs
+app.use('/api/v1/database/addfavourite', require('./routes/add_favourite'));
+app.use('/api/v1/database/updatevacancy', require('./routes/update_vacancy'));
+app.use('/api/v1/database/updaterating', require('./routes/update_rating'));
+app.use('/api/v1/database/getlistings', require('./routes/get_listings'));
+app.use('/api/v1/database/getlister', require('./routes/get_lister'));
 
 let DividerLine = "_______________________________________\n";
 

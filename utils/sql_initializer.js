@@ -2,7 +2,7 @@ const axios = require('axios').default;
 const QUERIES = require('./query_defination')
 
 async function sql_init(HOST, ACTION) {
-    let localConnection = 'http://192.168.64.2/db_manager.php?';
+    let localConnection = 'http://localhost/db_manager.php?';
     let hostedConnection = 'https://icarus-database.000webhostapp.com/db_manager.php?';
     if (HOST === "LOCAL")
         connection = localConnection;
