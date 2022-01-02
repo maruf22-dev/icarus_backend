@@ -55,6 +55,7 @@ app.use('/api/v1/database/getlister', require('./routes/get_lister'));
 app.use('/api/v1/database/gethistory', require('./routes/get_history'));
 app.use('/api/v1/database/getuser', require('./routes/get_user'));
 app.use('/api/v1/database/getmessages', require('./routes/get_messages'));
+app.use('/api/v1/database/getalllisting', require('./routes/get_all_listing'));
 
 let DividerLine = "_______________________________________\n";
 

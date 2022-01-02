@@ -103,6 +103,12 @@ const RETRIEVE =
                 `SELECT * from messages WHERE 1 order by timeSent;`
             );
         },
+    GET_ALL_LISTING:
+        function GET_ALL_LISTING(ID) {
+            return (
+                `SELECT * from listings WHERE 1;`
+            );
+        },
 
     //     UPDATE_LISITING:
     //     function CHECK_LAST_MESSAGE(ID) {
