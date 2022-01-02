@@ -36,7 +36,7 @@ route.post('/',
         }
         else {
             let userID = info.data.data[0].userID;
-            let username = info.data.data[0].userName;
+            let username = info.data.data[0].name;
             let email = info.data.data[0].email;
             let password = info.data.data[0].password;
 

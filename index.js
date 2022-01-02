@@ -3,6 +3,8 @@ const app = express();
 const cors = require("cors");
 const serverSocket = require('socket.io');
 const bodyParser = require("body-parser");
+const send_message = require('./utils/send_message');
+const message_handler = require('./utils/message_handler');
 // The port for the server to run on
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
@@ -50,6 +52,9 @@ app.use('/api/v1/database/updatevacancy', require('./routes/update_vacancy'));
 app.use('/api/v1/database/updaterating', require('./routes/update_rating'));
 app.use('/api/v1/database/getlistings', require('./routes/get_listings'));
 app.use('/api/v1/database/getlister', require('./routes/get_lister'));
+app.use('/api/v1/database/gethistory', require('./routes/get_history'));
+app.use('/api/v1/database/getuser', require('./routes/get_user'));
+app.use('/api/v1/database/getmessages', require('./routes/get_messages'));
 
 let DividerLine = "_______________________________________\n";
 
@@ -70,6 +75,8 @@ io.on('connection', (socket) => {
         socket.broadcast.emit("recieve_message", message);
         socket.emit("recieve_message", message);
         console.log(message);
+        send_message(message);
+        message_handler(message);
     });
     socket.on("disconnect", () => {
     })

@@ -79,6 +79,30 @@ const RETRIEVE =
                 `SELECT * from lister WHERE lister.listerID='${ID}';`
             );
         },
+    EXISTS:
+        function EXISTS(ID) {
+            return (
+                `SELECT * from lastMessage WHERE lastMessage.id='${ID}';`
+            );
+        },
+    GET_HISTORY:
+        function GET_HISTORY(ID) {
+            return (
+                `SELECT * from lastMessage WHERE 1;`
+            );
+        },
+    GET_USER:
+        function GET_USER(ID) {
+            return (
+                `SELECT * from users WHERE 1;`
+            );
+        },
+    GET_MESSAGES:
+        function GET_MESSAGES(ID) {
+            return (
+                `SELECT * from messages WHERE 1 order by timeSent;`
+            );
+        },
 
     //     UPDATE_LISITING:
     //     function CHECK_LAST_MESSAGE(ID) {
@@ -181,12 +205,36 @@ const UPDATE =
             return (
                 `UPDATE lister SET totalRating=${totalRating},totalRaters=${totalRaters} WHERE lister.listerID='${listerID}';`
             );
-        }
+        },
+    SEND_MESSAGE:
+        function SEND_MESSAGE(msgID, senderID, receiverID, text, timeSent, senderProfImgLink, threadID, senderName) {
+            return (
+                `INSERT INTO messages(msgID, senderID, receiverID, text, timeSent, senderProfImgLink, threadID, senderName) 
+                VALUES ('${msgID}','${senderID}','${receiverID}','${text}','${timeSent}','${senderProfImgLink}','${threadID}','${senderName}');`
+            );
+        },
+    INSERT_NEW_HISTORY:
+        function INSERT_NEW_HISTORY(id, sentBy, receivedBy, time, senderProfilePic, receiverProfilePic) {
+            return (
+                `INSERT INTO lastMessage(id, sentBy, receivedBy, time, senderProfilePic, receiverProfilePic) 
+                VALUES ('${id}','${sentBy}','${receivedBy}','${time}','${senderProfilePic}','${receiverProfilePic}');`
+            );
+        },
+    UPDATE_NEW_HISTORY:
+        function INSERT_NEW_HISTORY(id, sentBy, receivedBy, time, senderProfilePic, receiverProfilePic) {
+            return (
+                `UPDATE lastMessage SET sentBy='${sentBy}',receivedBy='${receivedBy}',time='${time}',senderProfilePic='${senderProfilePic}',receiverProfilePic='${receiverProfilePic}' 
+                WHERE lastMessage.id='${id}';`
+            );
+        },
 
     // INSERT INTO favourites(listingID, favouritedBy) VALUES ('[value-1]','[value-2]');
     // INSERT_NEW_FAVOURITE
 
 }
+
+
+
 
 const QUERIES = {
     DBA: DBA,
