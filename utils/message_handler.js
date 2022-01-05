@@ -20,20 +20,20 @@ let getThreadId = (senderID, recieverID) => {
 // UPDATE listings SET vacancy='[value-14]' WHERE listings.listID=''
 const message_handler = async (message) => {
     let exists = await
-        sql_exec('LOCAL', 'RETRIEVE',
+        sql_exec('WEB', 'RETRIEVE',
             QUERIES.RETRIEVE.EXISTS(getThreadId(message.senderID, message.recieverID)));
     console.log(exists.data.data.length);
     
     if(exists.data.data.length > 0)
     {
         await
-        sql_exec('LOCAL', 'UPDATE',
+        sql_exec('WEB', 'UPDATE',
             QUERIES.UPDATE.UPDATE_NEW_HISTORY(getThreadId(message.senderID, message.recieverID),message.senderID, message.recieverID, message.timestamp, message.senderProfileImageLink, null));
     }
     else
     {
         await
-        sql_exec('LOCAL', 'UPDATE',
+        sql_exec('WEB', 'UPDATE',
             QUERIES.UPDATE.INSERT_NEW_HISTORY(getThreadId(message.senderID, message.recieverID),message.senderID, message.recieverID, message.timestamp, message.senderProfileImageLink, null));
     }
 

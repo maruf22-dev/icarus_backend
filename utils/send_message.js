@@ -19,7 +19,7 @@ let getThreadId = (senderID, recieverID) => {
 
 // UPDATE listings SET vacancy='[value-14]' WHERE listings.listID=''
 const send_message = async (message) => {
-    let value = await sql_exec('LOCAL', 'UPDATE',
+    let value = await sql_exec('WEB', 'UPDATE',
             QUERIES.UPDATE.SEND_MESSAGE(message.messageID, message.senderID, message.recieverID, 
                 message.messageText, message.timestamp, message.senderProfileImageLink, getThreadId(message.senderID, message.recieverID), message.senderName));
 
