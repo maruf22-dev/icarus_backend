@@ -233,6 +233,14 @@ const UPDATE =
                 WHERE lastMessage.id='${id}';`
             );
         },
+    UPDATE_USER_PROFILE:
+        function UPDATE_USER_PROFILE(profilepic, username, bio, phone, email, occupation, address, usertype, userID) {
+            return (
+                `UPDATE users SET users.profileImageLink=NULL, users.name='${username}', users.bio='${bio}',
+                users.phoneNumber='${phone}', users.email='${email}', users.occupation='${occupation}', users.address='${address}', users.usertype ='${usertype}'
+                WHERE users.userID='${userID}';`
+            );
+        },
 
     // INSERT INTO favourites(listingID, favouritedBy) VALUES ('[value-1]','[value-2]');
     // INSERT_NEW_FAVOURITE

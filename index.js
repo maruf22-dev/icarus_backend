@@ -46,6 +46,7 @@ app.use('/api/v1/database/insertlistings', require('./routes/insert_listings'));
 app.use('/api/v1/database/insertlister', require('./routes/insert_lister'));
 app.use('/api/v1/database/insertarea', require('./routes/insert_area'));
 app.use('/api/v1/database/insertreport', require('./routes/insert_report'));
+app.use('/api/v1/database/updateprofile', require('./routes/update_profile'));
 // user will update : numOfFav++, insert a new Fav in favs
 app.use('/api/v1/database/addfavourite', require('./routes/add_favourite'));
 app.use('/api/v1/database/updatevacancy', require('./routes/update_vacancy'));
